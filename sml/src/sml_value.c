@@ -49,6 +49,9 @@ sml_value *sml_value_parse(sml_buffer *buf) {
 			value->data.uint8 = sml_number_parse(buf, type, max);
 			value->type |= max;
 			break;
+		case SML_TYPE_LIST:
+			value->data.list = sml_list_type_parse(buf);
+			break;
 		default:
 			buf->error = 1;
 			break;

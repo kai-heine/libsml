@@ -23,6 +23,7 @@
 #include "sml_octet_string.h"
 #include "sml_number.h"
 #include "sml_boolean.h"
+#include "sml_list_type.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,6 +42,7 @@ typedef struct {
 		u16 *uint16;
 		u32 *uint32;
 		u64 *uint64;
+		sml_list_type *list;
 	} data;
 } sml_value;
 

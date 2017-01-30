@@ -44,7 +44,9 @@ OBJS = \
 	src/sml_get_profile_pack_request.o \
 	src/sml_get_profile_pack_response.o \
 	src/sml_get_profile_list_request.o \
-	src/sml_get_profile_list_response.o
+	src/sml_get_profile_list_response.o \
+	src/sml_list_type.o \
+	src/sml_cosem_value.o
 
 ifeq ($(UNAME), Linux)
 libsml: $(DYN_LIB) $(ST_LIB) $(OBJ_LIB)
