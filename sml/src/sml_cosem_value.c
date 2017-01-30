@@ -3,15 +3,17 @@
 #include <stdio.h>
 
 sml_cosem_value *sml_cosem_value_init() {
-	return 0;
-}
-
-sml_cosem_value *sml_cosem_value_parse(sml_buffer *buf) {
 	sml_cosem_value *cosem_value = (sml_cosem_value *) malloc(sizeof(sml_cosem_value));
 	*cosem_value = ( sml_cosem_value ) {
 		.tag = NULL,
 		.data.scaler_unit = NULL
 	};
+
+	return cosem_value;
+}
+
+sml_cosem_value *sml_cosem_value_parse(sml_buffer *buf) {
+	sml_cosem_value *cosem_value = sml_cosem_value_init();
 
 	if (sml_buf_get_next_type(buf) != SML_TYPE_LIST) {
 		buf->error = 1;
@@ -47,20 +49,32 @@ void sml_cosem_value_write(sml_cosem_value *cosem_value, sml_buffer *buf) {
 }
 
 void sml_cosem_value_free(sml_cosem_value *cosem_value) {
-
+	if (cosem_value) {
+		switch (*(cosem_value->tag)) {
+			case SML_COSEM_VALUE_TYPE_SCALER_UNIT:
+				sml_cosem_scaler_unit_type_free(cosem_value->data.scaler_unit);
+				break;
+			default:
+				break;
+		}
+		sml_number_free(cosem_value->tag);
+		free(cosem_value);
+	}
 }
 
 
 sml_cosem_scaler_unit_type *sml_cosem_scaler_unit_type_init() {
-	return 0;
-}
-
-sml_cosem_scaler_unit_type *sml_cosem_scaler_unit_type_parse(sml_buffer *buf) {
 	sml_cosem_scaler_unit_type *scaler_unit = (sml_cosem_scaler_unit_type *) malloc(sizeof(sml_cosem_scaler_unit_type));
 	*scaler_unit = ( sml_cosem_scaler_unit_type ) {
 		.scaler = NULL,
 		.unit = NULL
 	};
+
+	return scaler_unit;
+}
+
+sml_cosem_scaler_unit_type *sml_cosem_scaler_unit_type_parse(sml_buffer *buf) {
+	sml_cosem_scaler_unit_type *scaler_unit = sml_cosem_scaler_unit_type_init();
 
 	if (sml_buf_get_next_type(buf) != SML_TYPE_LIST) {
 		buf->error = 1;
@@ -90,5 +104,9 @@ void sml_cosem_scaler_unit_type_write(sml_cosem_scaler_unit_type *cosem_scaler_u
 }
 
 void sml_cosem_scaler_unit_type_free(sml_cosem_scaler_unit_type *cosem_scaler_unit) {
-
+	if (cosem_scaler_unit) {
+		sml_number_free(cosem_scaler_unit->scaler);
+		sml_number_free(cosem_scaler_unit->unit);
+		free(cosem_scaler_unit);
+	}
 }

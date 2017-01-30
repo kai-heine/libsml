@@ -104,6 +104,9 @@ void sml_value_free(sml_value *value) {
 			case SML_TYPE_BOOLEAN:
 				sml_boolean_free(value->data.boolean);
 				break;
+			case SML_TYPE_LIST:
+				sml_list_type_free(value->data.list);
+				break;
 			default:
 				sml_number_free(value->data.int8);
 				break;

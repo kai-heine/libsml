@@ -3,15 +3,17 @@
 #include <stdio.h>
 
 sml_list_type *sml_list_type_init() {
-	return 0;
-}
-
-sml_list_type *sml_list_type_parse(sml_buffer *buf) {
 	sml_list_type *list = (sml_list_type *) malloc(sizeof(sml_list_type));
 	*list = ( sml_list_type ) {
 		.tag = NULL,
 		.data.cosem_value = NULL
 	};
+
+	return list;
+}
+
+sml_list_type *sml_list_type_parse(sml_buffer *buf) {
+	sml_list_type *list = sml_list_type_init();
 
 	if (sml_buf_get_next_type(buf) != SML_TYPE_LIST) {
 		buf->error = 1;
@@ -47,5 +49,15 @@ void sml_list_type_write(sml_list_type *list, sml_buffer *buf) {
 }
 
 void sml_list_type_free(sml_list_type *list) {
-
+	if (list) {
+		switch (*(list->tag)) {
+			case SML_LIST_TYPE_COSEM_VALUE:
+				sml_cosem_value_free(list->data.cosem_value);
+				break;
+			default:
+				break;
+		}
+		sml_number_free(list->tag);
+		free(list);
+	}
 }
