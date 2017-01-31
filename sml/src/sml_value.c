@@ -82,6 +82,9 @@ void sml_value_write(sml_value *value, sml_buffer *buf) {
 			sml_number_write(value->data.uint8, (value->type & SML_TYPE_FIELD),
 				(value->type & SML_LENGTH_FIELD), buf);
 			break;
+		case SML_TYPE_LIST:
+			sml_list_type_write(value->data.list, buf);
+			break;
 	}
 }
 

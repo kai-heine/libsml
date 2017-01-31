@@ -45,7 +45,17 @@ error:
 }
 
 void sml_list_type_write(sml_list_type *list, sml_buffer *buf) {
+	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
+	sml_u8_write(list->tag, buf);
 
+	switch (*(list->tag)) {
+		case SML_LIST_TYPE_COSEM_VALUE:
+			sml_cosem_value_write(list->data.cosem_value, buf);
+			break;
+		default:
+			fprintf(stderr,"libsml: error: list type choice %02X not yet implemented\n", *(list->tag));
+			break;
+	}
 }
 
 void sml_list_type_free(sml_list_type *list) {

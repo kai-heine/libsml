@@ -45,7 +45,17 @@ error:
 }
 
 void sml_cosem_value_write(sml_cosem_value *cosem_value, sml_buffer *buf) {
+	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
+	sml_u8_write(cosem_value->tag, buf);
 
+	switch (*(cosem_value->tag)) {
+		case SML_COSEM_VALUE_TYPE_SCALER_UNIT:
+			sml_cosem_scaler_unit_type_write(cosem_value->data.scaler_unit, buf);
+			break;
+		default:
+			fprintf(stderr,"libsml: error: cosem_value choice %02X not yet implemented\n", *(cosem_value->tag));
+			break;
+	}
 }
 
 void sml_cosem_value_free(sml_cosem_value *cosem_value) {
@@ -100,7 +110,9 @@ error:
 }
 
 void sml_cosem_scaler_unit_type_write(sml_cosem_scaler_unit_type *cosem_scaler_unit, sml_buffer *buf) {
-
+	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
+	sml_i8_write(cosem_scaler_unit->scaler, buf);
+	sml_u8_write(cosem_scaler_unit->unit, buf);
 }
 
 void sml_cosem_scaler_unit_type_free(sml_cosem_scaler_unit_type *cosem_scaler_unit) {
