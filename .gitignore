@@ -27,3 +27,6 @@
 # Editor files
 *~
 *.swp
+
+/.vscode/
+/build/
