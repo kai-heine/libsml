@@ -18,6 +18,7 @@
 # Compiled Dynamic libraries
 *.so.*
 *.so
+*.dylib
 
 # Compiled Static libraries
 *.lai
@@ -30,3 +31,5 @@
 
 /.vscode/
 /build/
+.project
+.cproject
