@@ -38,9 +38,9 @@ target_include_directories(sml PUBLIC
 )
 
 target_compile_options(sml PRIVATE
-    $<IF:$<CXX_COMPILER_ID:MSVC>,
-    /W4,
-    -Wall -Wextra -pedantic>
+	$<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:
+		-Wall -Wextra
+	>
 )
 
 find_package(UUID)
