@@ -19,6 +19,8 @@
 #ifndef SML_TRANSPORT_H_
 #define	SML_TRANSPORT_H_
 
+#ifndef SML_NO_TRANSPORT
+
 #include <stdlib.h>
 #include <sml/sml_file.h>
 
@@ -48,6 +50,7 @@ int sml_transport_write(int fd, sml_file *file);
 }
 #endif
 
+#endif /* SML_NO_TRANSPORT */
 
 #endif /* SML_TRANSPORT_H_ */
 

@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.0)
-include(GNUInstallDirs)
 
 add_library(sml
     src/sml_file.c
@@ -32,6 +31,7 @@ add_library(sml
     src/sml_list_type.c
     src/sml_cosem_value.c
 )
+
 target_include_directories(sml PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
@@ -43,19 +43,48 @@ target_compile_options(sml PRIVATE
 	>
 )
 
-find_package(UUID)
-if(UUID_FOUND)
-    target_link_libraries(sml PUBLIC uuid)
-else()
-    target_compile_definitions(sml PRIVATE SML_NO_UUID_LIB)
-endif()
+target_compile_definitions(sml
+    PUBLIC $<$<BOOL:${SML_WITHOUT_TRANSPORT}>:SML_NO_TRANSPORT>
+    PRIVATE SML_NO_UUID_LIB
+)
 
-install(TARGETS sml EXPORT libsmlconfig
+add_library(SML::sml ALIAS sml)
+
+# Installation
+
+include(GNUInstallDirs)
+
+install(TARGETS sml
+    EXPORT sml-targets
     ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+install(
+    DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
 
-install(EXPORT libsmlconfig DESTINATION share/libsml/cmake)
+install(EXPORT sml-targets
+    FILE SMLTargets.cmake
+    NAMESPACE SML::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/SML
+)
 
-export(TARGETS sml FILE libsmlconfig.cmake)
+include(CMakePackageConfigHelpers)
+configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/SMLConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/SMLConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/SML
+)
+
+install(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/SMLConfig.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/SML
+)
+
+export(EXPORT sml-targets
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/SMLTargets.cmake
+    NAMESPACE SML::
+)
+
+export(PACKAGE SML)

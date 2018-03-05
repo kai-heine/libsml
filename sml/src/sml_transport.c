@@ -16,6 +16,7 @@
 // You should have received a copy of the GNU General Public License
 // along with libSML.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef SML_NO_TRANSPORT
 
 #include <sml/sml_transport.h>
 #include <sml/sml_shared.h>
@@ -156,3 +157,4 @@ int sml_transport_write(int fd, sml_file *file) {
 	return 0;
 }
 
+#endif /* SML_NO_TRANSPORT */
