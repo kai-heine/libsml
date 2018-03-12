@@ -23,12 +23,12 @@ typedef struct {
 
 sml_cosem_value *sml_cosem_value_init();
 sml_cosem_value *sml_cosem_value_parse(sml_buffer *buf);
-void sml_cosem_value_write(sml_cosem_value *cosem_value, sml_buffer *buf);
+void sml_cosem_value_write(const sml_cosem_value *cosem_value, sml_buffer *buf);
 void sml_cosem_value_free(sml_cosem_value *cosem_value);
 
 sml_cosem_scaler_unit_type *sml_cosem_scaler_unit_type_init();
 sml_cosem_scaler_unit_type *sml_cosem_scaler_unit_type_parse(sml_buffer *buf);
-void sml_cosem_scaler_unit_type_write(sml_cosem_scaler_unit_type *cosem_scaler_unit, sml_buffer *buf);
+void sml_cosem_scaler_unit_type_write(const sml_cosem_scaler_unit_type *cosem_scaler_unit, sml_buffer *buf);
 void sml_cosem_scaler_unit_type_free(sml_cosem_scaler_unit_type *cosem_scaler_unit);
 
 #ifdef __cplusplus

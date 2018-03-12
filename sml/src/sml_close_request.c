@@ -52,7 +52,7 @@ error:
 	return 0;
 }
 
-void sml_close_request_write(sml_close_request *msg, sml_buffer *buf) {
+void sml_close_request_write(const sml_close_request *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 1);
 	sml_octet_string_write(msg->global_signature,buf);
 }

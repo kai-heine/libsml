@@ -33,7 +33,7 @@ sml_get_list_request* sml_get_list_request_init() {
 	return msg;
 }
 
-void sml_get_list_request_write(sml_get_list_request *msg, sml_buffer *buf) {
+void sml_get_list_request_write(const sml_get_list_request *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 5);
 
 	sml_octet_string_write(msg->client_id, buf);

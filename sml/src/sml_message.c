@@ -203,7 +203,7 @@ sml_message_body *sml_message_body_init(u32 tag, void *data) {
 	return message_body;
 }
 
-void sml_message_body_write(sml_message_body *message_body, sml_buffer *buf) {
+void sml_message_body_write(const sml_message_body *message_body, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
 	sml_u32_write(message_body->tag, buf);
 

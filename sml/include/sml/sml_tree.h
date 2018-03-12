@@ -103,32 +103,32 @@ typedef struct {
 sml_tree *sml_tree_init();
 sml_tree *sml_tree_parse(sml_buffer *buf);
 void sml_tree_add_tree(sml_tree *base_tree, sml_tree *tree);
-void sml_tree_write(sml_tree *tree, sml_buffer *buf);
+void sml_tree_write(const sml_tree *tree, sml_buffer *buf);
 void sml_tree_free(sml_tree *tree);
 
 // sml_tree_path;
 sml_tree_path *sml_tree_path_init();
 sml_tree_path *sml_tree_path_parse(sml_buffer *buf);
 void sml_tree_path_add_path_entry(sml_tree_path *tree_path, octet_string *entry);
-void sml_tree_path_write(sml_tree_path *tree_path, sml_buffer *buf);
+void sml_tree_path_write(const sml_tree_path *tree_path, sml_buffer *buf);
 void sml_tree_path_free(sml_tree_path *tree_path);
 
 // sml_proc_par_value;
 sml_proc_par_value *sml_proc_par_value_init();
 sml_proc_par_value *sml_proc_par_value_parse(sml_buffer *buf);
-void sml_proc_par_value_write(sml_proc_par_value *value, sml_buffer *buf);
+void sml_proc_par_value_write(const sml_proc_par_value *value, sml_buffer *buf);
 void sml_proc_par_value_free(sml_proc_par_value *value);
 
 // sml_tupel_entry;
 sml_tupel_entry *sml_tupel_entry_init();
 sml_tupel_entry *sml_tupel_entry_parse(sml_buffer *buf);
-void sml_tupel_entry_write(sml_tupel_entry *tupel, sml_buffer *buf);
+void sml_tupel_entry_write(const sml_tupel_entry *tupel, sml_buffer *buf);
 void sml_tupel_entry_free(sml_tupel_entry *tupel);
 
 // sml_period_entry;
 sml_period_entry *sml_period_entry_init();
 sml_period_entry *sml_period_entry_parse(sml_buffer *buf);
-void sml_period_entry_write(sml_period_entry *period, sml_buffer *buf);
+void sml_period_entry_write( const sml_period_entry *period, sml_buffer *buf);
 void sml_period_entry_free(sml_period_entry *period);
 
 #ifdef __cplusplus

@@ -63,7 +63,7 @@ error:
 	return 0;
 }
 
-void sml_sequence_write(sml_sequence *seq, sml_buffer *buf, void (*elem_write) (void *elem, sml_buffer *buf)) {
+void sml_sequence_write(const sml_sequence *seq, sml_buffer *buf, void (*elem_write) (const void *elem, sml_buffer *buf)) {
 	if (seq == 0) {
 		sml_buf_optional_write(buf);
 		return;
@@ -201,7 +201,7 @@ error:
 }
 
 
-void sml_list_entry_write(sml_list *list, sml_buffer *buf) {
+void sml_list_entry_write(const sml_list *list, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 7);
 	sml_octet_string_write(list->obj_name, buf);
 	sml_status_write(list->status, buf);
@@ -212,13 +212,13 @@ void sml_list_entry_write(sml_list *list, sml_buffer *buf) {
 	sml_octet_string_write(list->value_signature, buf);
 }
 
-void sml_list_write(sml_list *list, sml_buffer *buf){
+void sml_list_write(const sml_list *list, sml_buffer *buf){
 	if (list == 0) {
 		sml_buf_optional_write(buf);
 		return;
 	}
 
-	sml_list *i = list;
+	const sml_list *i = list;
 	int len = 0;
 	while(i) {
 		i = i->next;

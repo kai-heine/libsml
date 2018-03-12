@@ -43,7 +43,7 @@ typedef struct {
 
 sml_get_profile_list_response *sml_get_profile_list_response_init();
 sml_get_profile_list_response *sml_get_profile_list_response_parse(sml_buffer *buf);
-void sml_get_profile_list_response_write(sml_get_profile_list_response *msg, sml_buffer *buf);
+void sml_get_profile_list_response_write(const sml_get_profile_list_response *msg, sml_buffer *buf);
 void sml_get_profile_list_response_free(sml_get_profile_list_response *msg);
 
 #ifdef __cplusplus

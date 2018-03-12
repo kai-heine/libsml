@@ -133,7 +133,7 @@ TEST(sml_sequence, parse_octet_string) {
 	sml_sequence_free( seq );
 }
 
-static void sml_octet_string_write_( void * p, sml_buffer * buf ) {
+static void sml_octet_string_write_(const void * p, sml_buffer * buf ) {
 	sml_octet_string_write( p, buf );
 }
 

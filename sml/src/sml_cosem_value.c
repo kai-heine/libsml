@@ -44,7 +44,7 @@ error:
 	return 0;
 }
 
-void sml_cosem_value_write(sml_cosem_value *cosem_value, sml_buffer *buf) {
+void sml_cosem_value_write(const sml_cosem_value *cosem_value, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
 	sml_u8_write(cosem_value->tag, buf);
 
@@ -109,7 +109,7 @@ error:
 	return 0;
 }
 
-void sml_cosem_scaler_unit_type_write(sml_cosem_scaler_unit_type *cosem_scaler_unit, sml_buffer *buf) {
+void sml_cosem_scaler_unit_type_write(const sml_cosem_scaler_unit_type *cosem_scaler_unit, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
 	sml_i8_write(cosem_scaler_unit->scaler, buf);
 	sml_u8_write(cosem_scaler_unit->unit, buf);

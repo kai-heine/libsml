@@ -53,7 +53,7 @@ sml_boolean *sml_boolean_parse(sml_buffer *buf) {
 	}
 }
 
-void sml_boolean_write(sml_boolean *boolean, sml_buffer *buf) {
+void sml_boolean_write(const sml_boolean *boolean, sml_buffer *buf) {
 	if (boolean == 0) {
 		sml_buf_optional_write(buf);
 		return;

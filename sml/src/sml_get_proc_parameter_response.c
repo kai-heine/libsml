@@ -59,7 +59,7 @@ error:
 	return 0;
 }
 
-void sml_get_proc_parameter_response_write(sml_get_proc_parameter_response *msg, sml_buffer *buf) {
+void sml_get_proc_parameter_response_write(const sml_get_proc_parameter_response *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 3);
 	sml_octet_string_write(msg->server_id, buf);
 	sml_tree_path_write(msg->parameter_tree_path, buf);

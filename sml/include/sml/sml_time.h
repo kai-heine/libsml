@@ -40,7 +40,7 @@ typedef struct {
 
 sml_time *sml_time_init();
 sml_time *sml_time_parse(sml_buffer *buf);
-void sml_time_write(sml_time *time, sml_buffer *buf);
+void sml_time_write(const sml_time *time, sml_buffer *buf);
 void sml_time_free(sml_time *time);
 #ifdef __cplusplus
 }

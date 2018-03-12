@@ -71,7 +71,7 @@ void sml_tree_path_add_path_entry(sml_tree_path *tree_path, octet_string *entry)
 	tree_path->path_entries[tree_path->path_entries_len - 1] = entry;
 }
 
-void sml_tree_path_write(sml_tree_path *tree_path, sml_buffer *buf) {
+void sml_tree_path_write(const sml_tree_path *tree_path, sml_buffer *buf) {
 	if (tree_path == 0) {
 		sml_buf_optional_write(buf);
 		return;
@@ -185,7 +185,7 @@ void sml_tree_free(sml_tree *tree) {
 	}
 }
 
-void sml_tree_write(sml_tree *tree, sml_buffer *buf) {
+void sml_tree_write(const sml_tree *tree, sml_buffer *buf) {
 	if (tree == 0) {
 		sml_buf_optional_write(buf);
 		return;
@@ -266,7 +266,7 @@ error:
 	return 0;
 }
 
-void sml_proc_par_value_write(sml_proc_par_value *value, sml_buffer *buf) {
+void sml_proc_par_value_write(const sml_proc_par_value *value, sml_buffer *buf) {
 	if (value == 0) {
 		sml_buf_optional_write(buf);
 		return;
@@ -440,7 +440,7 @@ error:
 	return 0;
 }
 
-void sml_tupel_entry_write(sml_tupel_entry *tupel, sml_buffer *buf) {
+void sml_tupel_entry_write(const sml_tupel_entry *tupel, sml_buffer *buf) {
 	if (tupel == 0) {
 		sml_buf_optional_write(buf);
 		return;
@@ -579,7 +579,7 @@ sml_period_entry * sml_period_entry_parse( sml_buffer * buf ) {
 	return sml_period_entry_parse_( buf );
 }
 
-void sml_period_entry_write(sml_period_entry *period, sml_buffer *buf) {
+void sml_period_entry_write(const sml_period_entry *period, sml_buffer *buf) {
 	if (period == 0) {
 		sml_buf_optional_write(buf);
 		return;

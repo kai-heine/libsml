@@ -90,19 +90,19 @@ void sml_buf_set_type_and_length(sml_buffer *buf, unsigned int type, unsigned in
 	buf->cursor++;
 }
 
-int sml_buf_has_errors(sml_buffer *buf) {
+int sml_buf_has_errors(const sml_buffer *buf) {
 	return buf->error != 0;
 }
 
-int sml_buf_get_next_type(sml_buffer *buf) {
+int sml_buf_get_next_type(const sml_buffer *buf) {
 	return (buf->buffer[buf->cursor] & SML_TYPE_FIELD);
 }
 
-unsigned char sml_buf_get_current_byte(sml_buffer *buf) {
+unsigned char sml_buf_get_current_byte(const sml_buffer *buf) {
 	return buf->buffer[buf->cursor];
 }
 
-unsigned char *sml_buf_get_current_buf(sml_buffer *buf) {
+unsigned char *sml_buf_get_current_buf(const sml_buffer *buf) {
 	return &(buf->buffer[buf->cursor]);
 }
 
@@ -151,7 +151,7 @@ int sml_buf_optional_is_skipped(sml_buffer *buf) {
 	return 0;
 }
 
-void hexdump(unsigned char *buffer, size_t buffer_len) {
+void hexdump(const unsigned char *buffer, size_t buffer_len) {
 	for ( size_t i = 0; i < buffer_len; i++) {
 		printf("%02X ", (unsigned char) buffer[i]);
 		if ((i + 1) % 8 == 0) {

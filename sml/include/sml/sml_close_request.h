@@ -32,7 +32,7 @@ typedef struct {
 
 sml_close_request *sml_close_request_init();
 sml_close_request * sml_close_request_parse(sml_buffer *buf);
-void sml_close_request_write(sml_close_request *msg, sml_buffer *buf);
+void sml_close_request_write(const sml_close_request *msg, sml_buffer *buf);
 void sml_close_request_free(sml_close_request *msg);
 
 #ifdef __cplusplus

@@ -40,7 +40,7 @@ sml_get_profile_pack_request *sml_get_profile_pack_request_init(){
 	return msg;
 }
 
-void sml_get_profile_pack_request_write(sml_get_profile_pack_request *msg, sml_buffer *buf) {
+void sml_get_profile_pack_request_write(const sml_get_profile_pack_request *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 9);
 
 	sml_octet_string_write(msg->server_id, buf);

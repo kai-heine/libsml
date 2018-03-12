@@ -43,7 +43,7 @@ typedef struct {
 
 sml_get_profile_pack_response *sml_get_profile_pack_response_init();
 sml_get_profile_pack_response *sml_get_profile_pack_response_parse(sml_buffer *buf);
-void sml_get_profile_pack_response_write(sml_get_profile_pack_response *msg, sml_buffer *buf);
+void sml_get_profile_pack_response_write(const sml_get_profile_pack_response *msg, sml_buffer *buf);
 void sml_get_profile_pack_response_free(sml_get_profile_pack_response *msg);
 
 typedef struct {
@@ -54,7 +54,7 @@ typedef struct {
 
 sml_prof_obj_header_entry *sml_prof_obj_header_entry_init();
 sml_prof_obj_header_entry *sml_prof_obj_header_entry_parse(sml_buffer *buf);
-void sml_prof_obj_header_entry_write(sml_prof_obj_header_entry *entry, sml_buffer *buf);
+void sml_prof_obj_header_entry_write(const sml_prof_obj_header_entry *entry, sml_buffer *buf);
 void sml_prof_obj_header_entry_free(sml_prof_obj_header_entry *entry);
 
 typedef struct {
@@ -66,7 +66,7 @@ typedef struct {
 
 sml_prof_obj_period_entry *sml_prof_obj_period_entry_init();
 sml_prof_obj_period_entry *sml_prof_obj_period_entry_parse(sml_buffer *buf);
-void sml_prof_obj_period_entry_write(sml_prof_obj_period_entry *entry, sml_buffer *buf);
+void sml_prof_obj_period_entry_write(const sml_prof_obj_period_entry *entry, sml_buffer *buf);
 void sml_prof_obj_period_entry_free(sml_prof_obj_period_entry *entry);
 
 typedef struct {
@@ -76,7 +76,7 @@ typedef struct {
 
 sml_value_entry *sml_value_entry_init();
 sml_value_entry *sml_value_entry_parse(sml_buffer *buf);
-void sml_value_entry_write(sml_value_entry *entry, sml_buffer *buf);
+void sml_value_entry_write(const sml_value_entry *entry, sml_buffer *buf);
 void sml_value_entry_free(sml_value_entry *entry);
 
 #ifdef __cplusplus

@@ -33,7 +33,7 @@ uint8_t ctoi(uint8_t c);
 uint8_t c2toi(uint8_t c1, uint8_t c2);
 uint8_t c2ptoi(char* c);
 
-octet_string *sml_octet_string_init(unsigned char *str, int length) {
+octet_string *sml_octet_string_init(const unsigned char *str, int length) {
 	octet_string *s = (octet_string *)malloc(sizeof(octet_string));
 	*s = ( octet_string ) {
 		.str = NULL,
@@ -91,7 +91,7 @@ octet_string *sml_octet_string_parse(sml_buffer *buf) {
 	return str;
 }
 
-void sml_octet_string_write(octet_string *str, sml_buffer *buf) {
+void sml_octet_string_write(const octet_string *str, sml_buffer *buf) {
 	if (str == 0) {
 		sml_buf_optional_write(buf);
 		return;

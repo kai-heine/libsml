@@ -64,7 +64,7 @@ sml_attention_response *sml_attention_response_parse(sml_buffer *buf){
 		return 0;
 }
 
-void sml_attention_response_write(sml_attention_response *msg, sml_buffer *buf) {
+void sml_attention_response_write(const sml_attention_response *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 4);
 
 	sml_octet_string_write(msg->server_id, buf);

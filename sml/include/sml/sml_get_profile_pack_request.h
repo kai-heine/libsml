@@ -56,7 +56,7 @@ typedef struct {
 
 sml_get_profile_pack_request *sml_get_profile_pack_request_parse(sml_buffer *buf);
 sml_get_profile_pack_request *sml_get_profile_pack_request_init();
-void sml_get_profile_pack_request_write(sml_get_profile_pack_request *msg, sml_buffer *buf);
+void sml_get_profile_pack_request_write(const sml_get_profile_pack_request *msg, sml_buffer *buf);
 void sml_get_profile_pack_request_free(sml_get_profile_pack_request *msg);
 
 #ifdef __cplusplus

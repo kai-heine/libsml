@@ -44,7 +44,7 @@ error:
 	return 0;
 }
 
-void sml_list_type_write(sml_list_type *list, sml_buffer *buf) {
+void sml_list_type_write(const sml_list_type *list, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
 	sml_u8_write(list->tag, buf);
 

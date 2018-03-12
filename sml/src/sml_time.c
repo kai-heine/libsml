@@ -83,7 +83,7 @@ error:
 	return 0;
 }
 
-void sml_time_write(sml_time *t, sml_buffer *buf) {
+void sml_time_write(const sml_time *t, sml_buffer *buf) {
 	if (t == 0) {
 		sml_buf_optional_write(buf);
 		return;

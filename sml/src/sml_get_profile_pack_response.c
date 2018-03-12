@@ -23,7 +23,7 @@
 static void * sml_prof_obj_header_entry_parse_(sml_buffer *buf);
 static void * sml_value_entry_parse_(sml_buffer *buf);
 static void sml_value_entry_free_( void * p );
-static void sml_value_entry_write_( void * p, sml_buffer *buf);
+static void sml_value_entry_write_(const void * p, sml_buffer *buf);
 
 static void sml_prof_obj_header_entry_free_( void * p ) {
 	sml_prof_obj_header_entry * entry = p;
@@ -80,8 +80,8 @@ static void sml_prof_obj_period_entry_free_( void * p ) {
 	}
 }
 
-static void sml_prof_obj_header_entry_write_( void * p, sml_buffer *buf) {
-	sml_prof_obj_header_entry * entry = p;
+static void sml_prof_obj_header_entry_write_(const void * p, sml_buffer *buf) {
+	const sml_prof_obj_header_entry * entry = p;
 
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 3);
 
@@ -90,8 +90,8 @@ static void sml_prof_obj_header_entry_write_( void * p, sml_buffer *buf) {
 	sml_i8_write(entry->scaler, buf);
 }
 
-static void sml_prof_obj_period_entry_write_( void * p, sml_buffer *buf) {
-	sml_prof_obj_period_entry * entry = p;
+static void sml_prof_obj_period_entry_write_(const void * p, sml_buffer *buf) {
+	const sml_prof_obj_period_entry * entry = p;
 
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 4);
 	sml_time_write(entry->val_time, buf);
@@ -126,8 +126,8 @@ error:
 	return 0;
 }
 
-static void sml_value_entry_write_( void * p, sml_buffer *buf) {
-	sml_value_entry * entry = p;
+static void sml_value_entry_write_(const void * p, sml_buffer *buf) {
+	const sml_value_entry * entry = p;
 
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 2);
 	sml_value_write(entry->value, buf);
@@ -208,7 +208,7 @@ error:
 	return 0;
 }
 
-void sml_get_profile_pack_response_write(sml_get_profile_pack_response *msg, sml_buffer *buf) {
+void sml_get_profile_pack_response_write(const sml_get_profile_pack_response *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 8);
 
 	sml_octet_string_write(msg->server_id, buf);
@@ -280,7 +280,7 @@ sml_prof_obj_header_entry * sml_prof_obj_header_entry_parse( sml_buffer * buf ) 
 	return sml_prof_obj_header_entry_parse_( buf );
 }
 
-void sml_prof_obj_header_entry_write( sml_prof_obj_header_entry * entry, sml_buffer * buf ) {
+void sml_prof_obj_header_entry_write(const sml_prof_obj_header_entry * entry, sml_buffer * buf ) {
 	sml_prof_obj_header_entry_write_( entry, buf );
 }
 
@@ -306,7 +306,7 @@ sml_prof_obj_period_entry * sml_prof_obj_period_entry_parse( sml_buffer * buf ) 
 	return sml_prof_obj_period_entry_parse_( buf );
 }
 
-void sml_prof_obj_period_entry_write( sml_prof_obj_period_entry * entry, sml_buffer * buf ) {
+void sml_prof_obj_period_entry_write(const sml_prof_obj_period_entry * entry, sml_buffer * buf ) {
 	sml_prof_obj_period_entry_write_( entry, buf );
 }
 
@@ -331,7 +331,7 @@ sml_value_entry * sml_value_entry_parse( sml_buffer * buf ) {
 	return sml_value_entry_parse_( buf );
 }
 
-void sml_value_entry_write( sml_value_entry * entry, sml_buffer * buf ) {
+void sml_value_entry_write(const sml_value_entry * entry, sml_buffer * buf ) {
 	sml_value_entry_write_( entry, buf );
 }
 

@@ -21,7 +21,7 @@ typedef struct {
 
 sml_list_type *sml_list_type_init();
 sml_list_type *sml_list_type_parse(sml_buffer *buf);
-void sml_list_type_write(sml_list_type *list, sml_buffer *buf);
+void sml_list_type_write(const sml_list_type *list, sml_buffer *buf);
 void sml_list_type_free(sml_list_type *list);
 
 #ifdef __cplusplus

@@ -38,7 +38,7 @@ typedef struct {
 
 sml_open_request *sml_open_request_init();
 sml_open_request *sml_open_request_parse(sml_buffer *buf);
-void sml_open_request_write(sml_open_request *msg, sml_buffer *buf);
+void sml_open_request_write(const sml_open_request *msg, sml_buffer *buf);
 void sml_open_request_free(sml_open_request *msg);
 
 #ifdef __cplusplus

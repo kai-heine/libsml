@@ -93,11 +93,11 @@ error:
 	return 0;
 }
 
-static void sml_period_entry_write_( void * p, sml_buffer * buf ) {
+static void sml_period_entry_write_(const void * p, sml_buffer * buf ) {
 	sml_period_entry_write( p, buf );
 }
 
-void sml_get_profile_list_response_write(sml_get_profile_list_response *msg, sml_buffer *buf) {
+void sml_get_profile_list_response_write(const sml_get_profile_list_response *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 9);
 
 	sml_octet_string_write(msg->server_id, buf);

@@ -65,7 +65,7 @@ sml_value *sml_value_parse(sml_buffer *buf) {
 	return value;
 }
 
-void sml_value_write(sml_value *value, sml_buffer *buf) {
+void sml_value_write(const sml_value *value, sml_buffer *buf) {
 	if (value == 0) {
 		sml_buf_optional_write(buf);
 		return;
@@ -119,7 +119,7 @@ void sml_value_free(sml_value *value) {
 	}
 }
 
-double sml_value_to_double(sml_value *value) {
+double sml_value_to_double(const sml_value *value) {
 	switch (value->type) {
 		case 0x51: return *value->data.int8;   break;
 		case 0x52: return *value->data.int16;  break;
@@ -140,7 +140,7 @@ double sml_value_to_double(sml_value *value) {
  * Converts SML octet string to a printable hex string.
  * It allocates memory, don't forget to free the buffer after using.
  */
-char *sml_value_to_strhex(sml_value *value, char **result, bool mixed) {
+char *sml_value_to_strhex(const sml_value *value, char **result, bool mixed) {
 	const char hex_str[] = "0123456789abcdef";
 
 	if (value == NULL || value->data.bytes == NULL ||

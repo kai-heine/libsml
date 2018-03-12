@@ -35,7 +35,7 @@ typedef struct {
 
 sml_get_proc_parameter_response *sml_get_proc_parameter_response_init();
 sml_get_proc_parameter_response *sml_get_proc_parameter_response_parse(sml_buffer *buf);
-void sml_get_proc_parameter_response_write(sml_get_proc_parameter_response *msg, sml_buffer *buf);
+void sml_get_proc_parameter_response_write(const sml_get_proc_parameter_response *msg, sml_buffer *buf);
 void sml_get_proc_parameter_response_free(sml_get_proc_parameter_response *msg);
 
 #ifdef __cplusplus

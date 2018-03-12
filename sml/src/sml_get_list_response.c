@@ -75,7 +75,7 @@ error:
 	return 0;
 }
 
-void sml_get_list_response_write(sml_get_list_response *msg, sml_buffer *buf) {
+void sml_get_list_response_write(const sml_get_list_response *msg, sml_buffer *buf) {
 	sml_buf_set_type_and_length(buf, SML_TYPE_LIST, 7);
 
 	sml_octet_string_write(msg->client_id, buf);

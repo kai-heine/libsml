@@ -49,13 +49,13 @@ typedef struct {
 
 sml_value *sml_value_init();
 sml_value *sml_value_parse(sml_buffer *buf);
-void sml_value_write(sml_value *value, sml_buffer *buf);
+void sml_value_write(const sml_value *value, sml_buffer *buf);
 void sml_value_free(sml_value *value);
 
 // Cast arbitrary sized sml_value to double
-double sml_value_to_double(sml_value *value);
+double sml_value_to_double(const sml_value *value);
 // Converts SML octet string to a printable hex string
-char *sml_value_to_strhex(sml_value *value, char **result, bool mixed);
+char *sml_value_to_strhex(const sml_value *value, char **result, bool mixed);
 
 #ifdef __cplusplus
 }

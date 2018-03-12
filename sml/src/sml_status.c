@@ -62,7 +62,7 @@ sml_status *sml_status_parse(sml_buffer *buf) {
 	return status;
 }
 
-void sml_status_write(sml_status *status, sml_buffer *buf) {
+void sml_status_write(const sml_status *status, sml_buffer *buf) {
 	if (status == 0) {
 		sml_buf_optional_write(buf);
 		return;

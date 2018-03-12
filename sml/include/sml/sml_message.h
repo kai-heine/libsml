@@ -84,7 +84,7 @@ void sml_message_write(sml_message *msg, sml_buffer *buf);
 sml_message_body *sml_message_body_parse(sml_buffer *buf);
 sml_message_body *sml_message_body_init(u32 tag, void *data);
 void sml_message_body_free(sml_message_body *message_body);
-void sml_message_body_write(sml_message_body *message_body, sml_buffer *buf);
+void sml_message_body_write(const sml_message_body *message_body, sml_buffer *buf);
 
 #ifdef __cplusplus
 }
