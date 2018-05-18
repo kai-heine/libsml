@@ -27,8 +27,8 @@
 int sml_number_endian();
 void sml_number_byte_swap(unsigned char *bytes, int bytes_len);
 
-void *sml_number_init(u64 number, unsigned char type __attribute__ ((unused)), int size) {
-	
+void *sml_number_init(u64 number, unsigned char type, int size) {
+	(void)type;
 	const char * bytes = ( const char * ) &number;
 
 	// Swap bytes of big-endian number so that
@@ -112,12 +112,14 @@ void sml_number_write(const void *np, unsigned char type, int size, sml_buffer *
 
 void sml_number_byte_swap(unsigned char *bytes, int bytes_len) {
 	int i;
-	unsigned char ob[bytes_len];
-	memcpy(&ob, bytes, bytes_len);
+	unsigned char* ob = malloc(bytes_len);
+	memcpy(ob, bytes, bytes_len);
 	
 	for (i = 0; i < bytes_len; i++) {
 		bytes[i] = ob[bytes_len - (i + 1)];
 	}
+
+	free(ob);
 }
 
 int sml_number_endian() {

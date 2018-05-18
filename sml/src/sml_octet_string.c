@@ -21,7 +21,9 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 
 #ifndef SML_NO_UUID_LIB
 #include <uuid/uuid.h>
@@ -53,11 +55,13 @@ octet_string *sml_octet_string_init_from_hex(char *str) {
 	if (len % 2 != 0) {
 		return 0;
 	}
-	unsigned char bytes[len / 2];
+	unsigned char *bytes = malloc(len/2);
 	for (i = 0; i < (len / 2); i++) {
 		bytes[i] = c2ptoi(&(str[i * 2]));
 	}
-	return sml_octet_string_init(bytes, len / 2);
+	octet_string* ret = sml_octet_string_init(bytes, len / 2);
+	free(bytes);
+	return ret;
 }
 
 void sml_octet_string_free(octet_string *str) {

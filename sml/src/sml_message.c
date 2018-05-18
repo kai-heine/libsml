@@ -26,7 +26,6 @@
 #include <sml/sml_crc16.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 // sml_message;
 
